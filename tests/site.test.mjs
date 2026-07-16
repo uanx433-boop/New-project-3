@@ -90,7 +90,8 @@ assert.ok(packageJson.dependencies?.['@react-three/rapier'], '@react-three/rapie
 const lanyardEntry = existsSync('lanyard-entry.jsx') ? readFileSync('lanyard-entry.jsx', 'utf8') : '';
 const lanyardLoader = existsSync('lanyard-loader.js') ? readFileSync('lanyard-loader.js', 'utf8') : '';
 const lanyardComponent = existsSync('components/Lanyard.jsx') ? readFileSync('components/Lanyard.jsx', 'utf8') : '';
-assert.match(lanyardEntry, /frontImage="\/assets\/lanyard-front\.jpg"/, 'Lanyard should use the provided JPG as frontImage');
+assert.match(lanyardEntry, /import lanyardFront from '\.\/assets\/lanyard-front\.jpg'/, 'Lanyard should import the provided JPG for production bundling');
+assert.match(lanyardEntry, /frontImage=\{lanyardFront\}/, 'Lanyard should use the provided JPG as frontImage');
 assert.match(lanyardEntry, /imageFit="cover"/, 'Lanyard should use cover to remove white card image margins');
 assert.match(lanyardEntry, /cardScale=\{1\.68\}/, 'Lanyard card should be scaled down for the homepage');
 assert.match(lanyardEntry, /lanyardWidth=\{0\.82\}/, 'Lanyard band should be slimmer after the card is reduced');

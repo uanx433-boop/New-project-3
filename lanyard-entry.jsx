@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Lanyard from './components/Lanyard.jsx';
+import lanyardFront from './assets/lanyard-front.jpg';
 
 function LanyardPortal({ initialOpen = false }) {
   const [open, setOpen] = useState(initialOpen);
@@ -50,7 +51,7 @@ function LanyardPortal({ initialOpen = false }) {
       <Lanyard
         position={[0, 0, 43]}
         gravity={[0, -46, 0]}
-        frontImage="/assets/lanyard-front.jpg"
+        frontImage={lanyardFront}
         imageFit="cover"
         lanyardWidth={0.82}
         cardScale={1.68}
