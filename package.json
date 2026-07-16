@@ -1,0 +1,25 @@
+{
+  "name": "yi-xuan-personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build:lanyard": "esbuild lanyard-entry.jsx --bundle --format=esm --jsx=automatic --outfile=lanyard-entry.bundle.js --asset-names=assets/[name]-[hash] --loader:.glb=file --loader:.png=file --loader:.jpg=file",
+    "test": "node tests/site.test.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/rapier": "^2.2.0",
+    "gsap": "^3.13.0",
+    "meshline": "^3.3.1",
+    "ogl": "^1.0.11",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "three": "^0.185.1",
+    "vite": "^8.1.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}
