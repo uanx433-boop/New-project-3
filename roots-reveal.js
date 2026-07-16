@@ -1,4 +1,4 @@
-import { Renderer, Program, Mesh, Texture, Triangle } from './node_modules/ogl/src/index.js';
+import { Renderer, Program, Mesh, Texture, Triangle } from 'ogl';
 
 const vertexShader = `
 attribute vec2 uv;

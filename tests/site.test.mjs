@@ -47,7 +47,7 @@ assert.match(css, /\.roots-reveal-media[\s\S]*radial-gradient/, 'roots reveal sh
 assert.match(css, /roots-reveal-canvas/, 'roots reveal should support a motion canvas without changing layout');
 assert.match(css, /--reveal-x/, 'roots reveal mask should follow a horizontal pointer coordinate');
 assert.match(css, /--reveal-y/, 'roots reveal mask should follow a vertical pointer coordinate');
-assert.match(rootsReveal, /from '\.\/node_modules\/ogl\/src\/index\.js'/, 'roots vegetation motion should reuse the local OGL renderer');
+assert.match(rootsReveal, /from 'ogl'/, 'roots vegetation motion should use bundled OGL imports for production');
 assert.match(rootsReveal, /vegetationMask/, 'roots motion should isolate green vegetation from the trunk');
 assert.match(rootsReveal, /uTime/, 'roots vegetation should use slow continuous shader motion');
 assert.match(rootsReveal, /IntersectionObserver/, 'roots motion should pause when the second page is off screen');
@@ -59,8 +59,9 @@ assert.doesNotMatch(css, /scroll-snap-type/, 'page scrolling should not snap to 
 assert.doesNotMatch(css, /scroll-snap-align/, 'sections should allow free scrolling stops');
 assert.ok(packageJson.dependencies?.gsap, 'gsap dependency should be installed');
 assert.match(html, /opening-animation/, 'home should include a full opening animation layer');
-assert.match(html, /node_modules\/gsap\/dist\/gsap\.min\.js/, 'local gsap should be loaded');
-assert.match(html, /node_modules\/gsap\/dist\/ScrollTrigger\.min\.js/, 'local ScrollTrigger should be loaded');
+assert.doesNotMatch(html, /node_modules\/gsap/, 'production HTML must not reference node_modules gsap files directly');
+assert.match(motion, /from 'gsap'/, 'motion should import gsap through Vite bundling');
+assert.match(motion, /from 'gsap\/ScrollTrigger'/, 'motion should import ScrollTrigger through Vite bundling');
 assert.match(html, /motion\.js/, 'premium motion script should be loaded');
 assert.match(html, /variable-proximity\.js/, 'safe VariableProximity script should be loaded');
 assert.match(css, /clip-path/, 'image reveal should use performant clipping');
@@ -75,7 +76,7 @@ assert.match(html, /lanyard-toggle/, 'home should include a button to open the L
 assert.match(html, /lanyard-root/, 'home should include an isolated Lanyard mount target');
 assert.match(html, /lanyard-loader\.js/, 'home should load only the lightweight Lanyard loader');
 assert.doesNotMatch(html, /src="lanyard-entry\.bundle\.js/, 'heavy Lanyard bundle should not load before the button is clicked');
-assert.match(html, /lanyard-entry\.bundle\.css/, 'home should load the bundled Lanyard CSS');
+assert.doesNotMatch(html, /lanyard-entry\.bundle\.css/, 'home should not depend on a prebuilt Lanyard CSS file');
 assert.match(css, /lanyard-toggle/, 'Lanyard trigger should be styled without changing the hero layout');
 assert.match(css, /lanyard-drop/, 'Lanyard should drop from the top over the existing homepage');
 assert.doesNotMatch(css, /\.lanyard-modal[\s\S]*backdrop-filter/, 'Lanyard should not use a full modal backdrop');
@@ -95,7 +96,7 @@ assert.match(lanyardEntry, /cardScale=\{1\.68\}/, 'Lanyard card should be scaled
 assert.match(lanyardEntry, /lanyardWidth=\{0\.82\}/, 'Lanyard band should be slimmer after the card is reduced');
 assert.match(lanyardEntry, /export function mountLanyard/, 'Lanyard React island should be mounted only when requested');
 assert.match(lanyardEntry, /ReactDOM\.createRoot/, 'Lanyard should mount as a React island');
-assert.match(lanyardLoader, /import\('\.\/lanyard-entry\.bundle\.js/, 'Lanyard loader should import the heavy bundle on click');
+assert.match(lanyardLoader, /import\('\.\/lanyard-entry\.jsx/, 'Lanyard loader should import the React island source on click');
 assert.match(lanyardEntry, /lanyard-drop/, 'Lanyard entry should render a top-drop hanging layer');
 assert.match(lanyardEntry, /Escape/, 'Lanyard should close from the keyboard without a modal page');
 assert.match(lanyardEntry, /onClick/, 'Lanyard entry should support click interactions');
@@ -123,6 +124,7 @@ assert.match(imageWarp, /color\.a\s*\*=\s*edge\s*\*\s*influence/, 'image warp sh
 assert.match(imageWarp, /sin\(\(dist \* 0\.075\) - \(uTime \* 5\.5\)\)/, 'image warp should restore the earlier no-star ripple distortion');
 assert.doesNotMatch(imageWarp, /waterRipple|uFlowSpeed/, 'image warp should be returned to the no-star non-water version');
 assert.doesNotMatch(imageWarp, /is-warp-ready/, 'image warp should not hide the original hero image layers');
+assert.match(imageWarp, /from 'ogl'/, 'image warp should use bundled OGL imports for production');
 assert.match(imageWarp, /new Renderer/, 'image warp should use the OGL renderer');
 assert.doesNotMatch(imageWarp, /StarLayer|uMouseRepulsion|NUM_LAYER/, 'image warp should not render Galaxy stars');
 assert.match(css, /variable-proximity-active/, 'safe VariableProximity should have scoped active styling');

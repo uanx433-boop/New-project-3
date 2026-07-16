@@ -1,7 +1,10 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!window.gsap || !window.ScrollTrigger || reduceMotion) {
+  if (reduceMotion) {
     document.body.classList.remove('is-opening');
     document.querySelector('.opening-animation')?.remove();
     document.querySelector('.hero-stagger-curtain')?.remove();
@@ -9,7 +12,6 @@
     return;
   }
 
-  const { gsap, ScrollTrigger } = window;
   gsap.registerPlugin(ScrollTrigger);
   const easeOut = 'power4.out';
   const easeSoft = 'power3.out';

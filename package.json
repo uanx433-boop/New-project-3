@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
     "build:lanyard": "esbuild lanyard-entry.jsx --bundle --format=esm --jsx=automatic --outfile=lanyard-entry.bundle.js --asset-names=assets/[name]-[hash] --loader:.glb=file --loader:.png=file --loader:.jpg=file",
     "test": "node tests/site.test.mjs"
   },

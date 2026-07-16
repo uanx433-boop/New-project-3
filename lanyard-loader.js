@@ -8,7 +8,7 @@
   toggle.addEventListener('click', () => {
     if (mounted) return;
     if (!pending) {
-      pending = import('./lanyard-entry.bundle.js?v=lanyard-2');
+      pending = import('./lanyard-entry.jsx');
     }
 
     pending.then(({ mountLanyard }) => {
