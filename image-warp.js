@@ -182,7 +182,7 @@ function initImageWarp(container) {
   };
 }
 
-const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 861px)').matches;
+const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const warpField = document.querySelector('[data-image-warp-field]');
 
 if (canUsePointer && warpField) {

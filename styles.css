@@ -385,6 +385,11 @@ html.motion-ready .reveal {
   color: #ffffff;
 }
 
+.lanyard-toggle.is-loading {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .lanyard-drop {
   position: fixed;
   top: -132px;
