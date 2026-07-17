@@ -1,4 +1,5 @@
 import { Renderer, Program, Mesh, Texture, Triangle } from 'ogl';
+import heroWarpImage from './assets/person-hero-user-final.png';
 
 const vertexShader = `
 attribute vec2 uv;
@@ -81,7 +82,7 @@ function initImageWarp(container) {
   });
 
   const image = new Image();
-  image.src = 'assets/person-hero-user-final.png';
+  image.src = heroWarpImage;
   image.onload = () => {
     texture.image = image;
     texture.needsUpdate = true;
