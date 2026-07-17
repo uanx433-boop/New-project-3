@@ -197,7 +197,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       .to('.opening-title-wrap', { y: -24, opacity: 0, duration: 0.56, ease: 'power2.out' }, 0.82);
   }
 
-  const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 861px)').matches;
+  const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (hero && canUsePointer && personPointer && shadowPointer && typePointer) {
     const personMax = 12;
     const shadowMax = 5;
