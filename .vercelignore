@@ -1,0 +1,8 @@
+node_modules/
+.git/
+.vercel/
+dist/
+outputs/
+tests/
+npm-debug.log*
+*.local
