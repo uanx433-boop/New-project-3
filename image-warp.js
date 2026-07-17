@@ -182,9 +182,8 @@ function initImageWarp(container) {
   };
 }
 
-const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const warpField = document.querySelector('[data-image-warp-field]');
 
-if (canUsePointer && warpField) {
+if (warpField) {
   initImageWarp(warpField);
 }

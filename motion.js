@@ -197,8 +197,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       .to('.opening-title-wrap', { y: -24, opacity: 0, duration: 0.56, ease: 'power2.out' }, 0.82);
   }
 
-  const canUsePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (hero && canUsePointer && personPointer && shadowPointer && typePointer) {
+  if (hero && personPointer && shadowPointer && typePointer) {
     const personMax = 12;
     const shadowMax = 5;
     const typeMax = 3;
@@ -214,6 +213,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
     hero.addEventListener('pointermove', (event) => {
       if (!heroIntroDone) return;
+      if (event.pointerType && event.pointerType !== 'mouse') return;
 
       const rect = hero.getBoundingClientRect();
       const nx = (event.clientX - rect.left) / rect.width - 0.5;
